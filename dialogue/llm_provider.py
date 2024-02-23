@@ -2,25 +2,50 @@ import ollama
 
 
 class LLMProvider:
+    """ """
     def __init__(self, prompt):
         self.prompt = prompt
 
     def query(self, prompt):
+        """
+
+        :param prompt: 
+
+        """
         raise NotImplementedError
 
 
 class OpenAI(LLMProvider):
+    """ """
     def query(self, prompt):
+        """
+
+        :param prompt: 
+
+        """
         return "OpenAI"
 
 
 class Replicate(LLMProvider):
+    """ """
     def query(self, prompt):
+        """
+
+        :param prompt: 
+
+        """
         return "Replicate"
 
 
 class Ollama(LLMProvider):
+    """ """
     def query(self, prompt, model="llama2"):
+        """
+
+        :param prompt: 
+        :param model:  (Default value = "llama2")
+
+        """
         response = ollama.chat(
             model=model,
             messages=[
@@ -34,5 +59,11 @@ class Ollama(LLMProvider):
 
 
 class HuggingFace(LLMProvider):
+    """ """
     def query(self, prompt):
+        """
+
+        :param prompt: 
+
+        """
         return "HuggingFace"
