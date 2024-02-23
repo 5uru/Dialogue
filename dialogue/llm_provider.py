@@ -3,6 +3,7 @@ import ollama
 
 class LLMProvider:
     """ """
+
     def __init__(self, prompt):
         self.prompt = prompt
 
@@ -17,6 +18,7 @@ class LLMProvider:
 
 class OpenAI(LLMProvider):
     """ """
+
     def query(self, prompt):
         """
 
@@ -28,6 +30,7 @@ class OpenAI(LLMProvider):
 
 class Replicate(LLMProvider):
     """ """
+
     def query(self, prompt):
         """
 
@@ -39,6 +42,7 @@ class Replicate(LLMProvider):
 
 class Ollama(LLMProvider):
     """ """
+
     def query(self, prompt, model="llama2"):
         """
 
@@ -60,6 +64,7 @@ class Ollama(LLMProvider):
 
 class HuggingFace(LLMProvider):
     """ """
+
     def query(self, prompt):
         """
 
