@@ -29,4 +29,4 @@
 - https://python.langchain.com/docs/guides/structured_output
 - https://www.kaggle.com/code/iamleonie/rag-with-gemma-on-hf-and-weaviate-in-dspy
 - https://medium.com/thoughts-on-machine-learning/dspy-langchain-a-powerful-mix-for-automatic-prompt-optimization-bdd67a58f0cd
-- 
+-
