@@ -1,5 +1,5 @@
 import uuid
-from typing import Optional, List
+from typing import List, Optional
 
 import chromadb
 from chromadb.utils import embedding_functions
