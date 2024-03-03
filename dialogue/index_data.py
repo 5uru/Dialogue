@@ -1,5 +1,6 @@
 import uuid
-from typing import Optional, List
+from typing import List
+from typing import Optional
 
 import chromadb
 from chromadb.utils import embedding_functions
@@ -27,6 +28,13 @@ def split_documents(
     knowledge_base: List[LangchainDocument],
     tokenizer_name: Optional[str] = EMBEDDING_MODEL_NAME,
 ) -> List[LangchainDocument]:
+    """
+
+    :param chunk_size: int:
+    :param knowledge_base: List[LangchainDocument]:
+    :param tokenizer_name: Optional[str]:  (Default value = EMBEDDING_MODEL_NAME)
+
+    """
     # sourcery skip: inline-immediately-returned-variable
     """
     Split documents into chunks of maximum size `chunk_size` tokens and return a list of documents.
@@ -46,34 +54,35 @@ def split_documents(
     )
     # Split documents
     docs_processed = [
-        split_doc
-        for doc in knowledge_base
+        split_doc for doc in knowledge_base
         for split_doc in text_splitter.split_documents([doc])
     ]
     # Remove duplicates
     unique_texts = set()
     docs_processed_unique = [
-        doc
-        for doc in docs_processed
-        if not (doc.page_content in unique_texts or unique_texts.add(doc.page_content))
+        doc for doc in docs_processed
+        if not (doc.page_content in unique_texts
+                or unique_texts.add(doc.page_content))
     ]
     return docs_processed_unique
 
 
 def indexer(docs: List[LangchainDocument], collection_name: str):
-    """
-    Add documents to the collection.
-    Args:
-        docs (List[LangchainDocument]): The list of documents to be added to the collection.
-        collection_name (str): The name of the collection.
+    """Add documents to the collection.
+
+    :param docs: The list of documents to be added to the collection.
+    :type docs: List[LangchainDocument]
+    :param collection_name: The name of the collection.
+    :type collection_name: str
+    :param docs: List[LangchainDocument]:
+    :param collection_name: str:
+
     """
     client = chromadb.PersistentClient()
     sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
-        model_name=EMBEDDING_MODEL_NAME
-    )
+        model_name=EMBEDDING_MODEL_NAME)
     collection = client.get_or_create_collection(
-        name=collection_name, embedding_function=sentence_transformer_ef
-    )
+        name=collection_name, embedding_function=sentence_transformer_ef)
 
     # Add documents to the collection
     collection.add(
