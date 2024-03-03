@@ -54,16 +54,15 @@ def split_documents(
     )
     # Split documents
     docs_processed = [
-        split_doc
-        for doc in knowledge_base
+        split_doc for doc in knowledge_base
         for split_doc in text_splitter.split_documents([doc])
     ]
     # Remove duplicates
     unique_texts = set()
     docs_processed_unique = [
-        doc
-        for doc in docs_processed
-        if not (doc.page_content in unique_texts or unique_texts.add(doc.page_content))
+        doc for doc in docs_processed
+        if not (doc.page_content in unique_texts
+                or unique_texts.add(doc.page_content))
     ]
     return docs_processed_unique
 
@@ -81,11 +80,9 @@ def indexer(docs: List[LangchainDocument], collection_name: str):
     """
     client = chromadb.PersistentClient()
     sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
-        model_name=EMBEDDING_MODEL_NAME
-    )
+        model_name=EMBEDDING_MODEL_NAME)
     collection = client.get_or_create_collection(
-        name=collection_name, embedding_function=sentence_transformer_ef
-    )
+        name=collection_name, embedding_function=sentence_transformer_ef)
 
     # Add documents to the collection
     collection.add(
