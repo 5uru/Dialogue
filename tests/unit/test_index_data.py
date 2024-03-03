@@ -1,8 +1,10 @@
-from unittest.mock import ANY, patch
+from unittest.mock import ANY
+from unittest.mock import patch
 
 from langchain.docstore.document import Document as LangchainDocument
 
-from dialogue.index_data import indexer, split_documents
+from dialogue.index_data import indexer
+from dialogue.index_data import split_documents
 
 
 def test_split_documents():
