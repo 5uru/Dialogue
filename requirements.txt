@@ -2,4 +2,4 @@
 chromadb===0.4.24
 langchain==0.1.10
 ollama==0.1.7
-transformers==-4.38.2
+transformers==4.38.2
