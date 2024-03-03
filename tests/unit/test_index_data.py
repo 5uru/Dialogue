@@ -6,6 +6,7 @@ from dialogue.index_data import indexer, split_documents
 
 
 def test_split_documents():
+    """ """
     # Create a mock knowledge_base
     knowledge_base = [
         LangchainDocument(
@@ -27,6 +28,7 @@ def test_split_documents():
 
 
 def test_indexer():
+    """ """
     # Create a mock docs
     docs = [
         LangchainDocument(
