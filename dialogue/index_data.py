@@ -27,6 +27,13 @@ def split_documents(
     knowledge_base: List[LangchainDocument],
     tokenizer_name: Optional[str] = EMBEDDING_MODEL_NAME,
 ) -> List[LangchainDocument]:
+    """
+
+    :param chunk_size: int: 
+    :param knowledge_base: List[LangchainDocument]: 
+    :param tokenizer_name: Optional[str]:  (Default value = EMBEDDING_MODEL_NAME)
+
+    """
     # sourcery skip: inline-immediately-returned-variable
     """
     Split documents into chunks of maximum size `chunk_size` tokens and return a list of documents.
@@ -61,11 +68,15 @@ def split_documents(
 
 
 def indexer(docs: List[LangchainDocument], collection_name: str):
-    """
-    Add documents to the collection.
-    Args:
-        docs (List[LangchainDocument]): The list of documents to be added to the collection.
-        collection_name (str): The name of the collection.
+    """Add documents to the collection.
+
+    :param docs: The list of documents to be added to the collection.
+    :type docs: List[LangchainDocument]
+    :param collection_name: The name of the collection.
+    :type collection_name: str
+    :param docs: List[LangchainDocument]: 
+    :param collection_name: str: 
+
     """
     client = chromadb.PersistentClient()
     sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
