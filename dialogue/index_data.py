@@ -35,7 +35,11 @@ def split_documents(
     :param chunk_size: int: The maximum number of tokens per chunk.
     :param knowledge_base: List[LangchainDocument]: The list of documents to split.
     :param tokenizer_name: Optional[str]: The name of the tokenizer to use for splitting the documents. (Default value = EMBEDDING_MODEL_NAME)
-    :return: List[LangchainDocument]: The list of split documents.
+    :param chunk_size: int:
+    :param knowledge_base: List[LangchainDocument]:
+    :param tokenizer_name: Optional[str]:  (Default value = EMBEDDING_MODEL_NAME)
+    :returns: List[LangchainDocument]: The list of split documents.
+
     """
 
     text_splitter = RecursiveCharacterTextSplitter.from_huggingface_tokenizer(
@@ -48,35 +52,45 @@ def split_documents(
     )
     # Split documents
     docs_processed = [
-        split_doc
-        for doc in knowledge_base
+        split_doc for doc in knowledge_base
         for split_doc in text_splitter.split_documents([doc])
     ]
     # Remove duplicates
     unique_texts = set()
     return [
-        doc
-        for doc in docs_processed
-        if not (doc.page_content in unique_texts or unique_texts.add(doc.page_content))
+        doc for doc in docs_processed
+        if not (doc.page_content in unique_texts
+                or unique_texts.add(doc.page_content))
     ]
 
 
 def anonymize_documents(text: str) -> str:
-    """
-    Anonymize the given text.
-    :param text:  The text to be anonymized.
+    """Anonymize the given text.
+
+    :param text: The text to be anonymized.
     :type text: str
-    :return: The anonymized text.
+    :param text: str:
+    :returns: The anonymized text.
 
     """
 
     language = langdetect.detect(text)
     nlp_config = {
-        "nlp_engine_name": "spacy",
+        "nlp_engine_name":
+        "spacy",
         "models": [
-            {"lang_code": "en", "model_name": "en_core_web_md"},
-            {"lang_code": "es", "model_name": "es_core_news_md"},
-            {"lang_code": "fr", "model_name": "fr_core_news_md"},
+            {
+                "lang_code": "en",
+                "model_name": "en_core_web_md"
+            },
+            {
+                "lang_code": "es",
+                "model_name": "es_core_news_md"
+            },
+            {
+                "lang_code": "fr",
+                "model_name": "fr_core_news_md"
+            },
         ],
     }
     anonymizer = PresidioReversibleAnonymizer(
@@ -102,15 +116,15 @@ def indexer(docs: List[LangchainDocument], collection_name: str):
     :type collection_name: str
     :param docs: List[LangchainDocument]:
     :param collection_name: str:
+    :param docs: List[LangchainDocument]:
+    :param collection_name: str:
 
     """
     client = chromadb.PersistentClient()
     sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
-        model_name=EMBEDDING_MODEL_NAME
-    )
+        model_name=EMBEDDING_MODEL_NAME)
     collection = client.get_or_create_collection(
-        name=collection_name, embedding_function=sentence_transformer_ef
-    )
+        name=collection_name, embedding_function=sentence_transformer_ef)
 
     # Add documents to the collection
     collection.add(
