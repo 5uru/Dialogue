@@ -64,7 +64,7 @@ def test_indexer():
 def test_anonymize_documents(text):
     """
 
-    :param text: 
+    :param text:
 
     """
     anonymized_text = anonymize_documents(text)
