@@ -1,7 +1,9 @@
 from unittest.mock import patch, ANY
 
+import pytest
 from langchain.docstore.document import Document as LangchainDocument
 
+from dialogue.index_data import anonymize_documents
 from dialogue.index_data import indexer
 from dialogue.index_data import split_documents
 
@@ -51,3 +53,11 @@ def test_indexer():
             metadatas=[doc.metadata for doc in docs],
             documents=[doc.page_content for doc in docs],
         )
+
+
+@pytest.mark.parametrize(
+    "text", ["John Doe lives in New York and his email is johndoe@example.com"]
+)
+def test_anonymize_documents(text):
+    anonymized_text = anonymize_documents(text)
+    assert anonymized_text != text, "The text was not anonymized"

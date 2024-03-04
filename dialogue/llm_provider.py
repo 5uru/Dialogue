@@ -36,3 +36,31 @@ class Ollama(LLMProvider):
 class HuggingFace(LLMProvider):
     def query(self, prompt):
         return "HuggingFace"
+
+
+def llm_provider(prompt):
+    return Ollama(prompt)
+    # return HuggingFace(prompt)
+    # return OpenAI(prompt)
+    # return Replicate(prompt)
+    # return Ollama(prompt)
+    # return HuggingFace(prompt)
+    # return OpenAI(prompt)
+    # return Replicate(prompt)
+    # return Ollama(prompt)
+    # return HuggingFace(prompt)
+    # return OpenAI(prompt)
+    # return Replicate(prompt)
+    # return Ollama(prompt)
+    # return HuggingFace(prompt)
+    # return OpenAI(prompt)
+    # return Replicate(prompt)
+    # return Ollama(prompt)
+    # return HuggingFace(prompt)
+    # return OpenAI(prompt)
+    # return Replicate(prompt)
+    # return Ollama(prompt)
+    # return HuggingFace(prompt)
+    # return OpenAI(prompt)
+    # return Replicate(prompt)
+    # return Ollama(prompt)
