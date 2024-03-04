@@ -5,3 +5,4 @@ ollama==0.1.7
 transformers==4.38.2
 pytest==8.0.2
 coverage==7.2.2
+sentence_transformers==2.4.0
