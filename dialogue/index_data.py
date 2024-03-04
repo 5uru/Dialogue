@@ -34,7 +34,11 @@ def split_documents(
     :param chunk_size: int: The maximum number of tokens per chunk.
     :param knowledge_base: List[LangchainDocument]: The list of documents to split.
     :param tokenizer_name: Optional[str]: The name of the tokenizer to use for splitting the documents. (Default value = EMBEDDING_MODEL_NAME)
-    :return: List[LangchainDocument]: The list of split documents.
+    :param chunk_size: int: 
+    :param knowledge_base: List[LangchainDocument]: 
+    :param tokenizer_name: Optional[str]:  (Default value = EMBEDDING_MODEL_NAME)
+    :returns: List[LangchainDocument]: The list of split documents.
+
     """
 
     text_splitter = RecursiveCharacterTextSplitter.from_huggingface_tokenizer(
@@ -61,11 +65,12 @@ def split_documents(
 
 
 def anonymize_documents(text: str) -> str:
-    """
-    Anonymize the given text.
-    :param text:  The text to be anonymized.
+    """Anonymize the given text.
+
+    :param text: The text to be anonymized.
     :type text: str
-    :return: The anonymized text.
+    :param text: str: 
+    :returns: The anonymized text.
 
     """
 
@@ -101,6 +106,8 @@ def indexer(docs: List[LangchainDocument], collection_name: str):
     :type collection_name: str
     :param docs: List[LangchainDocument]:
     :param collection_name: str:
+    :param docs: List[LangchainDocument]: 
+    :param collection_name: str: 
 
     """
     client = chromadb.PersistentClient()

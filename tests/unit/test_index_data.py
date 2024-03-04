@@ -7,6 +7,7 @@ from dialogue.index_data import anonymize_documents, indexer, split_documents
 
 
 def test_split_documents():
+    """ """
     # Create a mock knowledge_base
     knowledge_base = [
         LangchainDocument(
@@ -28,6 +29,7 @@ def test_split_documents():
 
 
 def test_indexer():
+    """ """
     # Create a mock docs
     docs = [
         LangchainDocument(
@@ -57,5 +59,10 @@ def test_indexer():
     "text", ["John Doe lives in New York and his email is johndoe@example.com"]
 )
 def test_anonymize_documents(text):
+    """
+
+    :param text: 
+
+    """
     anonymized_text = anonymize_documents(text)
     assert anonymized_text != text, "The text was not anonymized"
