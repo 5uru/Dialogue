@@ -32,6 +32,9 @@ def split_documents(
     :param chunk_size: int:
     :param knowledge_base: List[LangchainDocument]:
     :param tokenizer_name: Optional[str]:  (Default value = EMBEDDING_MODEL_NAME)
+    :param chunk_size: int: 
+    :param knowledge_base: List[LangchainDocument]: 
+    :param tokenizer_name: Optional[str]:  (Default value = EMBEDDING_MODEL_NAME)
 
     """
     # sourcery skip: inline-immediately-returned-variable
@@ -76,6 +79,8 @@ def indexer(docs: List[LangchainDocument], collection_name: str):
     :type collection_name: str
     :param docs: List[LangchainDocument]:
     :param collection_name: str:
+    :param docs: List[LangchainDocument]: 
+    :param collection_name: str: 
 
     """
     client = chromadb.PersistentClient()
