@@ -1,11 +1,9 @@
-from unittest.mock import patch, ANY
+from unittest.mock import ANY, patch
 
 import pytest
 from langchain.docstore.document import Document as LangchainDocument
 
-from dialogue.index_data import anonymize_documents
-from dialogue.index_data import indexer
-from dialogue.index_data import split_documents
+from dialogue.index_data import anonymize_documents, indexer, split_documents
 
 
 def test_split_documents():
