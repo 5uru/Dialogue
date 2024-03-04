@@ -9,7 +9,7 @@ class LLMProvider:
     def query(self, prompt):
         """
 
-        :param prompt: 
+        :param prompt:
 
         """
         raise NotImplementedError
@@ -20,7 +20,7 @@ class OpenAI(LLMProvider):
     def query(self, prompt):
         """
 
-        :param prompt: 
+        :param prompt:
 
         """
         return "OpenAI"
@@ -31,7 +31,7 @@ class Replicate(LLMProvider):
     def query(self, prompt):
         """
 
-        :param prompt: 
+        :param prompt:
 
         """
         return "Replicate"
@@ -42,7 +42,7 @@ class Ollama(LLMProvider):
     def query(self, prompt, model="llama2"):
         """
 
-        :param prompt: 
+        :param prompt:
         :param model:  (Default value = "llama2")
 
         """
@@ -63,7 +63,7 @@ class HuggingFace(LLMProvider):
     def query(self, prompt):
         """
 
-        :param prompt: 
+        :param prompt:
 
         """
         return "HuggingFace"
@@ -72,7 +72,7 @@ class HuggingFace(LLMProvider):
 def llm_provider(prompt):
     """
 
-    :param prompt: 
+    :param prompt:
 
     """
     return Ollama(prompt)
