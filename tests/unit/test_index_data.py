@@ -17,8 +17,8 @@ def test_split_documents():
             page_content="This is a test document. It has multiple sentences."
         ),
         LangchainDocument(
-            page_content="This is another test document. It also has multiple sentences."
-        ),
+            page_content=
+            "This is another test document. It also has multiple sentences."),
     ]
 
     # Call the split_documents function
@@ -39,8 +39,8 @@ def test_indexer():
             page_content="This is a test document. It has multiple sentences."
         ),
         LangchainDocument(
-            page_content="This is another test document. It also has multiple sentences."
-        ),
+            page_content=
+            "This is another test document. It also has multiple sentences."),
     ]
 
     # Call the indexer function
@@ -59,8 +59,8 @@ def test_indexer():
 
 
 @pytest.mark.parametrize(
-    "text", ["John Doe lives in New York and his email is johndoe@example.com"]
-)
+    "text",
+    ["John Doe lives in New York and his email is johndoe@example.com"])
 def test_anonymize_documents(text):
     """
 
