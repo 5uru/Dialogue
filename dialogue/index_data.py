@@ -78,9 +78,9 @@ def anonymize_documents(text: str) -> str:
     nlp_config = {
         "nlp_engine_name": "spacy",
         "models": [
-            {"lang_code": "en", "model_name": "en_core_web_lg"},
-            {"lang_code": "es", "model_name": "es_core_news_lg"},
-            {"lang_code": "fr", "model_name": "fr_core_news_lg"},
+            {"lang_code": "en", "model_name": "en_core_web_md"},
+            {"lang_code": "es", "model_name": "es_core_news_md"},
+            {"lang_code": "fr", "model_name": "fr_core_news_md"},
         ],
     }
     anonymizer = PresidioReversibleAnonymizer(
