@@ -37,6 +37,9 @@ def split_documents(
     :param chunk_size: int:
     :param knowledge_base: List[LangchainDocument]:
     :param tokenizer_name: Optional[str]:  (Default value = EMBEDDING_MODEL_NAME)
+    :param chunk_size: int: 
+    :param knowledge_base: List[LangchainDocument]: 
+    :param tokenizer_name: Optional[str]:  (Default value = EMBEDDING_MODEL_NAME)
     :returns: List[LangchainDocument]: The list of split documents.
 
     """
@@ -69,6 +72,7 @@ def anonymize_documents(text: str) -> str:
 
     :param text: The text to be anonymized.
     :type text: str
+    :param text: str: 
     :returns: The anonymized text.
 
     """
@@ -107,6 +111,8 @@ def indexer(docs: List[LangchainDocument], collection_name: str):
     :param collection_name: str:
     :param docs: List[LangchainDocument]:
     :param collection_name: str:
+    :param docs: List[LangchainDocument]: 
+    :param collection_name: str: 
 
     """
     client = chromadb.PersistentClient()
