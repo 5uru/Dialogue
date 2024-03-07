@@ -59,10 +59,6 @@ def test_indexer():
     "text", ["John Doe lives in New York and his email is johndoe@example.com"]
 )
 def test_anonymize_documents(text):
-    """
-
-    :param text:
-
-    """
+    """:param text:"""
     anonymized_text = anonymize_documents(text)
     assert anonymized_text != text, "The text was not anonymized"
