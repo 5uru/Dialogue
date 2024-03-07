@@ -38,7 +38,7 @@ def get_message(query: str):
         "context": retriever,
         "question": RunnablePassthrough()
     }
-             | prompt
-             | llm
-             | StrOutputParser())
+        | prompt
+        | llm
+        | StrOutputParser())
     return chain.invoke("where did harrison work?")
