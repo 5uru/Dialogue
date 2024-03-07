@@ -1,15 +1,16 @@
-from langchain.chains import StuffDocumentsChain, LLMChain, ConversationalRetrievalChain
-from langchain.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.llms import Ollama
+from langchain_community.vectorstores import Chroma
+from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
+from langchain_core.runnables import RunnablePassthrough
 
 EMBEDDING_MODEL_NAME = "thenlper/gte-small"
-TEMPLATE = (
-    "Combine the chat history and follow up question into "
-    "a standalone question. Chat History: {chat_history}"
-    "Follow up question: {question}"
-)
+TEMPLATE = """Answer the question based only on the following context:
+{context}
+
+Question: {question}
+"""
 
 
 def get_message(query: str):
@@ -24,19 +25,18 @@ def get_message(query: str):
     """
     embedding = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL_NAME)
     vectorstore = Chroma(persist_directory="chroma", embedding_function=embedding)
-    llm = Ollama(model="llama2")
+    llm = Ollama(model="gemma:7b")
 
-    combine_docs_chain = StuffDocumentsChain()
     retriever = vectorstore.as_retriever()
 
     # This controls how the standalone question is generated.
     # Should take `chat_history` and `question` as input variables.
 
     prompt = PromptTemplate.from_template(TEMPLATE)
-    question_generator_chain = LLMChain(llm=llm, prompt=prompt)
-    chain = ConversationalRetrievalChain(
-        combine_docs_chain=combine_docs_chain,
-        retriever=retriever,
-        question_generator=question_generator_chain,
+    chain = (
+        {"context": retriever, "question": RunnablePassthrough()}
+        | prompt
+        | llm
+        | StrOutputParser()
     )
-    return chain.query(query)
+    return chain.invoke("where did harrison work?")
