@@ -1,5 +1,8 @@
 # Dialogue
 
+- **ingestion-service:** manages data loading, indexing and storage of integrations in the vector database.
+- **inference-service:** manages retrieval and generation.
+
 ## Roadmap features
 
 - [ ] Create unlimited local chatbots based on huggingface models or others
