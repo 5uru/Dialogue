@@ -32,8 +32,7 @@ def get_message(
         str: The response from the chatbot.
     """
     embedding = HuggingFaceEmbeddings(model_name=tokenizer_name)
-    vectorstore = Chroma(persist_directory="chroma",
-                         embedding_function=embedding)
+    vectorstore = Chroma(persist_directory="chroma", embedding_function=embedding)
     llm = Ollama(model="gemma:7b")
 
     retriever = vectorstore.as_retriever()
