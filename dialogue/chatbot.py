@@ -31,7 +31,7 @@ def get_message(
     :type tokenizer_name: Optional[str]
     :param history: The history template for generating the chat history. Defaults to TEMPLATE.
     :type history: Optional[str]
-    :param query: str: 
+    :param query: str:
     :param tokenizer_name: Optional[str]:  (Default value = EMBEDDING_MODEL_NAME)
     :param history: Optional[str]:  (Default value = TEMPLATE)
     :returns: The response from the chatbot.
