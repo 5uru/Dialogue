@@ -22,14 +22,21 @@ def get_message(
 ):
     """Returns the response from the chatbot based on the given query.
 
-    Args:
-        query (str): The query to be passed to the chatbot.
-        tokenizer_name (Optional[str], optional): The name of the tokenizer model to be used. Defaults to
+    :param query: The query to be passed to the chatbot.
+    :type query: str
+    :param tokenizer_name: The name of the tokenizer model to be used. Defaults to
+    :type tokenizer_name: Optional[str]
+    :param tokenizer_name: The name of the tokenizer model to be used. Defaults to
         EMBEDDING_MODEL_NAME.
-        history (Optional[str], optional): The history template for generating the chat history. Defaults to TEMPLATE.
+    :type tokenizer_name: Optional[str]
+    :param history: The history template for generating the chat history. Defaults to TEMPLATE.
+    :type history: Optional[str]
+    :param query: str: 
+    :param tokenizer_name: Optional[str]:  (Default value = EMBEDDING_MODEL_NAME)
+    :param history: Optional[str]:  (Default value = TEMPLATE)
+    :returns: The response from the chatbot.
+    :rtype: str
 
-    Returns:
-        str: The response from the chatbot.
     """
     embedding = HuggingFaceEmbeddings(model_name=tokenizer_name)
     vectorstore = Chroma(persist_directory="chroma", embedding_function=embedding)
