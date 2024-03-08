@@ -39,7 +39,8 @@ def get_message(
 
     """
     embedding = HuggingFaceEmbeddings(model_name=tokenizer_name)
-    vectorstore = Chroma(persist_directory="chroma", embedding_function=embedding)
+    vectorstore = Chroma(persist_directory="chroma",
+                         embedding_function=embedding)
     llm = Ollama(model="gemma:7b")
 
     retriever = vectorstore.as_retriever()
@@ -48,10 +49,11 @@ def get_message(
     # Should take `chat_history` and `question` as input variables.
 
     prompt = PromptTemplate.from_template(history)
-    chain = (
-        {"context": retriever, "question": RunnablePassthrough()}
-        | prompt
-        | llm
-        | StrOutputParser()
-    )
+    chain = ({
+        "context": retriever,
+        "question": RunnablePassthrough()
+    }
+             | prompt
+             | llm
+             | StrOutputParser())
     return chain.invoke(query)
